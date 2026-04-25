@@ -14,7 +14,13 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://erp-system-eight-plum.vercel.app/'
+  ],
+  credentials: true
+}));
 
 // Routes
 app.use('/api/auth', authRoutes);

@@ -13,26 +13,28 @@ connectDB();
 
 const app = express();
 
-app.use(express.json());
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://erp-system-eight-plum.vercel.app/'
+    'https://erp-system-eight-plum.vercel.app'
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Routes
+app.use(express.json());
+
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 app.get('/', (req, res) => {
-  res.json({ message: ' Mini ERP API is running!' });
+  res.json({ message: '🚀 Mini ERP API is running!' });
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(` Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });

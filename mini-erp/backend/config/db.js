@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const dns = require('dns');
 
-// Force use Google's DNS instead of MTN's blocked DNS
-dns.setServers(['8.8.8.8', '8.8.4.4']);
+// Only override DNS locally (fixes MTN network issue) — not needed in production
+if (process.env.NODE_ENV !== 'production') {
+  dns.setServers(['8.8.8.8', '8.8.4.4']);
+}
 
 const connectDB = async () => {
   try {

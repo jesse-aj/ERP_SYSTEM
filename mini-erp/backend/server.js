@@ -16,7 +16,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://erp-system-eight-plum.vercel.app'
+    'https://erp-system-woew.onrender.com'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
